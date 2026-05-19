@@ -6,15 +6,22 @@ A complete AI-assisted UI/UX workflow for web agencies. Each skill handles one p
 
 | # | Skill | Folder | Purpose | Output File |
 |---|---|---|---|---|
-| 01 | Client Discovery | `uiux-client-discovery/` | Collect project, business, audience, brand, and technical details | `.agency/CLIENT_BRIEF.md` |
+| 00 | Competitive Analysis | `uiux-competitive-analysis/` | Browser automation — screenshot and analyze 3–5 competitor sites | `.agency/COMPETITIVE_ANALYSIS.md` |
+| 01 | Client Discovery | `uiux-client-discovery/` | Collect project brief, set project_complexity and generation_tool | `.agency/CLIENT_BRIEF.md` |
+| 01.5 | Persona & JTBD | `uiux-persona-jtbd/` | Build proto-personas and Jobs-To-Be-Done from brief — informs UX, design, and copy | `.agency/PERSONAS.md` |
 | 02 | UX Strategy | `uiux-strategy-skill/` | Convert brief into UX strategy, user journey, page hierarchy, conversion flow | `.agency/UX_STRATEGY.md` |
+| 02.5 | Wireframe & IA | `uiux-wireframe-ia/` | Text wireframes to validate structure before visual design — human checkpoint | `.agency/WIREFRAMES.md` |
 | 03 | Design DNA | `uiux-desig-dna/` | Define visual direction, color system, typography, layout, anti-AI rules | `.agency/DESIGN_DNA.md` |
-| 04 | Stitch Prompt | `uiux-stitch-prompt/` | Generate ready-to-paste Google Stitch prompt | `.agency/STITCH_PROMPT.md` |
-| 05 | UI Critique | `uiux-critic-skill/` | Review generated UI against brief, UX strategy, and Design DNA | `.agency/UI_CRITIQUE.md` |
-| 06 | Humanization | `uiux-humanization-skill/` | Convert critique into refinement plan and Stitch refinement prompt | `.agency/REFINEMENT_PROMPT.md` |
+| 03.5 | Design Direction | `uiux-design-direction/` | Generate 3 visual directions, human picks one — human checkpoint | `.agency/DESIGN_DIRECTION_OPTIONS.md` |
+| 04 | UI Generation Prompt | `uiux-stitch-prompt/` | Generate tool-agnostic UI prompt (Stitch, V0, Framer, Figma, Locofy) | `.agency/UI_GENERATION_PROMPT.md` |
+| 05 | UI Critique | `uiux-critic-skill/` | Review generated UI with screenshot — human checkpoint | `.agency/UI_CRITIQUE.md` |
+| 06 | Humanization | `uiux-humanization-skill/` | Remove AI smell, produce refinement prompt | `.agency/REFINEMENT_PROMPT.md` |
+| 06.5 | Content Strategy | `uiux-content-strategy/` | Write real copy — headlines, CTAs, microcopy, SEO copy for every page | `.agency/CONTENT_STRATEGY.md` |
 | 07 | Responsive Review | `uiux-responsive-access/` | Check responsive behavior and accessibility before handoff | `.agency/RESPONSIVE_ACCESSIBILITY_REVIEW.md` |
 | 08 | Developer Handoff | `uiux-developer-handoff/` | Convert approved design into implementation-ready documentation | `.agency/DEVELOPER_HANDOFF.md` |
+| 08.5 | Design System Export | `uiux-design-system-export/` | Generate CSS custom properties, design tokens JSON, and Tailwind config | `.agency/DESIGN_SYSTEM.css` + `.agency/DESIGN_SYSTEM_TOKENS.json` |
 | 09 | Project Memory | `project-memory-continuity-skill/` | Initialize, maintain, repair, and resume project memory | `.agency/` files |
+| 10 | Client Presentation | `uiux-client-presentation/` | Assemble all project work into a client-facing presentation document | `.agency/CLIENT_PRESENTATION.md` |
 
 ---
 
@@ -26,17 +33,36 @@ Each skill is invoked using a `/` command. Type the skill name as a slash comman
 
 | Skill | Command |
 |---|---|
+| Competitive Analysis | `/uiux-competitive-analysis` |
 | Client Discovery | `/uiux-client-discovery` |
+| Persona & JTBD | `/uiux-persona-jtbd` |
 | UX Strategy | `/uiux-strategy-skill` |
+| Wireframe & IA | `/uiux-wireframe-ia` |
 | Design DNA | `/uiux-desig-dna` |
-| Stitch Prompt Generator | `/uiux-stitch-prompt` |
+| Design Direction | `/uiux-design-direction` |
+| UI Generation Prompt | `/uiux-stitch-prompt` |
 | UI Critique | `/uiux-critic-skill` |
 | Humanization & Refinement | `/uiux-humanization-skill` |
+| Content Strategy | `/uiux-content-strategy` |
 | Responsive + Accessibility Review | `/uiux-responsive-access` |
 | Developer Handoff | `/uiux-developer-handoff` |
+| Design System Export | `/uiux-design-system-export` |
+| Client Presentation | `/uiux-client-presentation` |
 | Project Memory & Continuity | `/project-memory-continuity-skill` |
 
 ### Step-By-Step Workflow
+
+**Step 0 — Competitive Analysis (standard and full projects)**
+
+```
+/uiux-competitive-analysis
+```
+
+Provide 2–5 competitor URLs from the brief. Claude uses browser automation to screenshot and analyze each site. Produces a differentiation strategy that feeds into Design DNA.
+
+Skip for lite projects.
+
+---
 
 **Step 1 — Start a new project**
 
@@ -45,6 +71,18 @@ Each skill is invoked using a `/` command. Type the skill name as a slash comman
 ```
 
 Claude will ask discovery questions and produce a Project UI Brief. It also creates the `.agency/` folder in your project.
+
+---
+
+**Step 1.5 — Persona & JTBD (standard and full projects)**
+
+```
+/uiux-persona-jtbd
+```
+
+Reads the Client Brief. Builds proto-personas (behavior models, not stock-photo stereotypes), Jobs-To-Be-Done statements, friction audits, and design implications per persona. Feeds into UX Strategy, Design DNA, and Content Strategy. Run before UX Strategy for clearer, more targeted decisions.
+
+Skip for lite projects.
 
 ---
 
@@ -58,6 +96,16 @@ Requires the Project UI Brief from Step 1. Claude reads `.agency/CLIENT_BRIEF.md
 
 ---
 
+**Step 2.5 — Wireframe & IA Validation (standard and full projects)**
+
+```
+/uiux-wireframe-ia
+```
+
+Claude converts UX Strategy into text-based ASCII wireframes for each page. Validates section order, content priority, and mobile stacking before visual design begins. **Requires human approval before proceeding.**
+
+---
+
 **Step 3 — Create Design DNA**
 
 ```
@@ -68,29 +116,37 @@ Requires brief + UX strategy. Claude defines visual direction, colors, typograph
 
 ---
 
-**Step 4 — Generate Stitch Prompt**
+**Step 3.5 — Design Direction Selector (standard and full projects)**
+
+```
+/uiux-design-direction
+```
+
+Claude generates three named visual directions with distinct personalities. Human or client picks one. Chosen direction feeds into Design DNA. **Requires human selection before proceeding.**
+
+---
+
+**Step 4 — Generate UI Prompt**
 
 ```
 /uiux-stitch-prompt
 ```
 
-Requires brief + UX strategy + Design DNA. Claude produces a ready-to-paste Google Stitch prompt.
-
-Paste the output into [Google Stitch](https://stitch.withgoogle.com) to generate the UI concept.
+Requires brief + UX strategy + Design DNA. Claude reads `generation_tool` from `PROJECT_STATE.json` and produces a tool-specific prompt optimized for whichever tool was chosen during discovery (Google Stitch, V0, Framer AI, Figma, or Locofy). Paste the output into the chosen tool to generate the UI concept.
 
 ---
 
 **Step 5 — Critique The Generated UI**
 
-After generating a UI in Google Stitch, bring the result back:
+After generating a UI in your chosen tool, bring the result back:
 
 ```
 /uiux-critic-skill
 
-[paste screenshot or describe the generated UI]
+[paste screenshot or URL]
 ```
 
-Claude scores the UI and produces a structured critique report.
+Provide a screenshot or URL — the skill requires visual input before running. Claude scores the UI across 6 categories and produces a structured critique report with a must-fix list.
 
 ---
 
@@ -100,7 +156,17 @@ Claude scores the UI and produces a structured critique report.
 /uiux-humanization-skill
 ```
 
-Reads the critique. Produces a humanization plan and a Google Stitch refinement prompt. Paste the refinement prompt back into Stitch.
+Reads the critique. Produces a humanization plan (what specifically makes it look AI-generated) and a refinement prompt to paste back into your generation tool.
+
+---
+
+**Step 6.5 — Content Strategy (standard and full projects)**
+
+```
+/uiux-content-strategy
+```
+
+Reads brief + UX strategy + Design DNA. Generates real copy for every page section: headlines, subheadlines, body copy, CTAs, microcopy, form labels, and SEO meta tags. Run before UI generation so prompts use real copy — or before handoff to give developers final content.
 
 ---
 
@@ -124,6 +190,16 @@ Converts the approved design into a full developer handoff document with design 
 
 ---
 
+**Step 8.5 — Design System Export (standard and full projects)**
+
+```
+/uiux-design-system-export
+```
+
+Reads Design DNA + Developer Handoff. Generates three production-ready files: CSS custom properties (`:root` variables), W3C design token JSON (importable into Figma and Style Dictionary), and a Tailwind config extension block. Developers paste these directly into the project.
+
+---
+
 **Step 9 — Resume or Repair Context (any time)**
 
 ```
@@ -134,20 +210,37 @@ Use this at the start of any new session to restore project context without re-r
 
 ---
 
+**Step 10 — Client Presentation (standard and full projects)**
+
+```
+/uiux-client-presentation
+```
+
+Assembles all completed project work into a client-facing presentation document. Translates design decisions into language the client understands. Use before design review calls or when handing off to the client's team.
+
+---
+
 ### Quick Trigger Phrases
 
 You can also trigger each skill by describing what you want:
 
 | What you say | Skill triggered |
 |---|---|
+| "Analyze competitors" / "Screenshot these competitor sites" | Competitive Analysis |
 | "Start a new client UI project" | Client Discovery |
+| "Build personas" / "Who are the users?" / "Create JTBD" | Persona & JTBD |
 | "Run UX strategy for this brief" | UX Strategy |
+| "Create wireframes" / "Validate the IA" | Wireframe & IA |
 | "Create the Design DNA" | Design DNA |
-| "Generate the Stitch prompt" | Stitch Prompt |
+| "Show me design direction options" / "Give me 3 design directions" | Design Direction |
+| "Generate the UI prompt" / "Generate the Stitch prompt" | UI Generation Prompt |
 | "Review this UI" / "Critique this screenshot" | UI Critique |
 | "Humanize this UI" / "Make it less AI-generated" | Humanization |
+| "Write the copy" / "Generate content strategy" / "Write headlines" | Content Strategy |
 | "Check mobile readiness" / "Review before handoff" | Responsive Review |
 | "Create developer handoff" | Developer Handoff |
+| "Export design tokens" / "Generate CSS variables" | Design System Export |
+| "Create client presentation" / "Prepare for client review" | Client Presentation |
 | "Resume this project" / "What is the current state?" | Project Memory |
 
 ---
@@ -177,12 +270,35 @@ It contains `required_context_files` for each skill phase. The AI only reads tho
 
 ---
 
+## Project Complexity Guide
+
+Set during Client Discovery (Step 1). Controls which skills run.
+
+| Complexity | When | Skills That Run |
+|---|---|---|
+| **Lite** | Single landing page, 1–2 day turnaround | 01, 02, 03, 04, 05, 06, 07, 08 |
+| **Standard** | Multi-page website or web app, 1–2 weeks | All skills |
+| **Full** | Complex product with multiple user flows, 2+ weeks | All skills + extended research |
+
+**Lite projects skip:** Competitive Analysis (00), Persona & JTBD (01.5), Wireframe & IA (02.5), Design Direction (03.5), Content Strategy (06.5), Design System Export (08.5), Client Presentation (10)
+
+**Human checkpoints** (skills that wait for your input before continuing):
+
+| Skill | What It Waits For |
+|---|---|
+| Wireframe & IA (02.5) | You approve the wireframe structure |
+| Design Direction (03.5) | You pick one of three visual directions |
+| UI Critique (05) | You provide a screenshot or URL of the generated UI |
+
+---
+
 ## How To Start A New Client Project
 
 1. Create a new project folder.
 2. Copy `agency-memory-template/` into the project root as `.agency/`.
-3. Run the Client Discovery Skill.
-4. Follow the skill execution order.
+3. Open Claude Code in that folder.
+4. Run `/uiux-client-discovery` and answer the discovery questions.
+5. Follow the skill execution order from there.
 
 ---
 
@@ -246,21 +362,37 @@ uiux/
 │   ├── PROJECT_CONTEXT.md
 │   ├── PROJECT_STATE.json
 │   ├── CLIENT_BRIEF.md
+│   ├── COMPETITIVE_ANALYSIS.md
+│   ├── PERSONAS.md
 │   ├── UX_STRATEGY.md
+│   ├── WIREFRAMES.md
 │   ├── DESIGN_DNA.md
-│   ├── STITCH_PROMPT.md
+│   ├── DESIGN_DIRECTION_OPTIONS.md
+│   ├── UI_GENERATION_PROMPT.md
+│   ├── CONTENT_STRATEGY.md
 │   ├── UI_CRITIQUE.md
 │   ├── REFINEMENT_PROMPT.md
 │   ├── RESPONSIVE_ACCESSIBILITY_REVIEW.md
 │   ├── DEVELOPER_HANDOFF.md
+│   ├── DESIGN_SYSTEM.css
+│   ├── DESIGN_SYSTEM_TOKENS.json
+│   ├── CLIENT_PRESENTATION.md
 │   ├── DECISIONS.md
 │   ├── TODO.md
 │   └── CHANGELOG.md
+├── uiux-competitive-analysis/
+│   └── SKILL.md
 ├── uiux-client-discovery/
+│   └── SKILL.md
+├── uiux-persona-jtbd/
 │   └── SKILL.md
 ├── uiux-strategy-skill/
 │   └── SKILL.md
+├── uiux-wireframe-ia/
+│   └── SKILL.md
 ├── uiux-desig-dna/
+│   └── SKILL.md
+├── uiux-design-direction/
 │   └── SKILL.md
 ├── uiux-stitch-prompt/
 │   └── SKILL.md
@@ -268,9 +400,15 @@ uiux/
 │   └── SKILL.md
 ├── uiux-humanization-skill/
 │   └── SKILL.md
+├── uiux-content-strategy/
+│   └── SKILL.md
 ├── uiux-responsive-access/
 │   └── SKILL.md
 ├── uiux-developer-handoff/
+│   └── SKILL.md
+├── uiux-design-system-export/
+│   └── SKILL.md
+├── uiux-client-presentation/
 │   └── SKILL.md
 └── project-memory-continuity-skill/
     └── SKILL.md

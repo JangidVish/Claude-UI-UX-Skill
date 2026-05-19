@@ -1,3 +1,14 @@
+---
+skill_id: uiux-client-discovery
+skill_number: 01
+requires_visual_input: false
+requires_browser: false
+project_complexity: all
+human_checkpoint_after: false
+output_file: .agency/CLIENT_BRIEF.md
+initializes_agency: true
+---
+
 # Client Discovery Skill
 
 ## Purpose
@@ -314,6 +325,29 @@ Finally, confirm technical details:
 5. Are there accessibility or performance requirements?
 6. What is the deadline or project stage?
 ```
+
+### Step 5: Project Scale & Generation Tool
+
+Ask:
+
+```md
+Two final questions to configure the workflow:
+
+1. What is the project scale?
+   - **Lite**: single landing page, 1–2 day turnaround — runs a simplified skill set
+   - **Standard**: multi-page website or web app, 1–2 weeks — runs the full skill set
+   - **Full**: complex product with multiple user flows, 2+ weeks — runs full skill set plus research layer
+
+2. Which tool will generate the UI concept?
+   - Google Stitch
+   - V0 (Vercel)
+   - Framer AI
+   - Figma (manual or AI-assisted)
+   - Locofy
+   - Other / Not decided yet
+```
+
+Write both answers to `.agency/PROJECT_STATE.json` as `project_complexity` and `generation_tool`.
 
 ---
 
@@ -737,4 +771,6 @@ After completing this skill:
 6. Append a short entry to `.agency/CHANGELOG.md`.
 7. Update `.agency/TODO.md` with next steps.
 8. Add major client decisions or assumptions to `.agency/DECISIONS.md`.
-9. Do not delete previous decisions or changelog entries.
+9. Write `project_complexity` to `.agency/PROJECT_STATE.json` — value: `lite`, `standard`, or `full`.
+10. Write `generation_tool` to `.agency/PROJECT_STATE.json` — value: the tool the team will use to generate UI.
+11. Do not delete previous decisions or changelog entries.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "metadata": {
+    "project": "",
+    "generated_by": "UI/UX Agency Skill System — Design System Export Skill (08.5)",
+    "version": "1.0",
+    "note": "Populate by running /uiux-design-system-export"
+  },
+  "color": {},
+  "typography": {},
+  "spacing": {},
+  "radius": {},
+  "shadow": {},
+  "motion": {}
+}

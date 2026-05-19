@@ -3,22 +3,32 @@
   "client": "",
   "industry": "",
   "project_type": "",
+  "project_complexity": "standard",
+  "generation_tool": "",
   "current_phase": "discovery",
   "last_updated": "",
   "phases": {
+    "competitive_analysis": { "status": "pending", "completed_at": null },
     "discovery": { "status": "pending", "completed_at": null },
+    "personas": { "status": "pending", "completed_at": null },
     "ux_strategy": { "status": "pending", "completed_at": null },
+    "wireframes": { "status": "pending", "completed_at": null },
     "design_dna": { "status": "pending", "completed_at": null },
-    "stitch_prompt": { "status": "pending", "completed_at": null },
+    "design_direction": { "status": "pending", "completed_at": null },
+    "ui_generation_prompt": { "status": "pending", "completed_at": null },
     "ui_critique": { "status": "pending", "completed_at": null },
     "humanization": { "status": "pending", "completed_at": null },
+    "content_strategy": { "status": "pending", "completed_at": null },
     "responsive_review": { "status": "pending", "completed_at": null },
-    "developer_handoff": { "status": "pending", "completed_at": null }
+    "developer_handoff": { "status": "pending", "completed_at": null },
+    "design_system_export": { "status": "pending", "completed_at": null },
+    "client_presentation": { "status": "pending", "completed_at": null }
   },
   "handoff_complete": false,
   "primary_cta": "",
   "design_direction": "",
   "target_audience": "",
   "open_questions": [],
-  "blocked_by": []
+  "blocked_by": [],
+  "lite_mode_skip": ["competitive_analysis", "personas", "wireframes", "design_direction", "content_strategy", "design_system_export", "client_presentation"]
 }

@@ -1,3 +1,13 @@
+---
+skill_id: uiux-critic-skill
+skill_number: 05
+requires_visual_input: true
+requires_browser: false
+project_complexity: all
+human_checkpoint_after: true
+output_file: .agency/UI_CRITIQUE.md
+---
+
 # UI Critique Skill
 
 ## Purpose
@@ -49,6 +59,26 @@ This skill is focused on **evaluation, criticism, scoring, and improvement direc
 
 ---
 
+## Visual Input Required
+
+This skill requires visual input before proceeding.
+
+Before starting the review, confirm one of the following:
+
+- **Screenshot**: paste the generated UI screenshot directly into the chat
+- **URL**: provide a link to the live page (browser review will be used)
+- **Figma link**: provide a Figma frame link or description
+- **Text description**: type `SKIP` to proceed in text-only mode
+
+If `SKIP` is used, mark the critique output with:
+```md
+**Review Limitation:** Visual input not provided. This critique is based on description only and may miss visual hierarchy, color, spacing, and AI-smell issues.
+```
+
+Do not begin scoring or analysis until visual input status is confirmed.
+
+---
+
 ## Core Behavior
 
 When this skill is triggered, act as a strict senior UI/UX design reviewer, creative director, and product design quality lead.
@@ -89,9 +119,11 @@ This skill works best with:
 
 Minimum required input:
 
-- UI screenshot or design description
+- UI screenshot or design description (**screenshot strongly preferred — see Visual Input Required section**)
 - Project type
 - Main goal of the page/screen
+
+If no screenshot is provided, the critique will be marked as limited and scores for Visual Hierarchy, Color System, Typography, Layout & Spacing, Component Consistency, and AI-Smell Risk will be marked as **N/A (no visual)**.
 
 If some supporting documents are missing, still perform the critique and clearly mark the review as **limited by missing context**.
 

@@ -1,12 +1,25 @@
-# Google Stitch Prompt Generator Skill
+---
+skill_id: uiux-ui-generation-prompt
+skill_number: 04
+requires_visual_input: false
+requires_browser: false
+project_complexity: all
+human_checkpoint_after: false
+output_file: .agency/UI_GENERATION_PROMPT.md
+generation_tool: reads from PROJECT_STATE.json
+---
+
+# UI Generation Prompt Skill
 
 ## Purpose
 
-This skill converts a completed **Project UI Brief**, **UX Strategy Document**, and **Design DNA Document** into a polished, high-quality prompt for Google Stitch.
+This skill converts a completed **Project UI Brief**, **UX Strategy Document**, and **Design DNA Document** into a polished, high-quality prompt for any AI UI generation tool.
 
 The goal is to help the team generate UI concepts that feel custom, premium, consistent, conversion-focused, and not obviously AI-generated.
 
-The output of this skill is a ready-to-paste **Google Stitch Prompt**.
+The output of this skill is a ready-to-paste **UI Generation Prompt** adapted for the tool specified in `.agency/PROJECT_STATE.json`.
+
+Supported tools: Google Stitch, V0 (Vercel), Framer AI, Figma AI, Locofy, or custom instructions.
 
 ---
 
@@ -32,6 +45,12 @@ Do **not** use this skill before the project brief, UX strategy, and Design DNA 
 ## Core Behavior
 
 When this skill is triggered, act as a senior UI/UX prompt director and visual design strategist.
+
+Before generating the prompt:
+
+1. Read `generation_tool` from `.agency/PROJECT_STATE.json`.
+2. If `generation_tool` is not set, ask: "Which tool will generate the UI? (Stitch / V0 / Framer / Figma / Locofy / Other)"
+3. Adapt the prompt format for the target tool using the Tool Adaptation Rules below.
 
 Your job is to:
 
@@ -236,6 +255,46 @@ Example:
 ```txt
 Keep the same color palette, typography direction, spacing rhythm, button style, card radius, and brand tone. Improve layout hierarchy and originality without introducing new visual styles.
 ```
+
+---
+
+## Tool Adaptation Rules
+
+Each tool has different input expectations. Adapt the prompt accordingly.
+
+### Google Stitch
+- Use natural language visual descriptions
+- Describe the visual feel, layout, color, and content
+- Include section order and anti-AI rules
+- Format: flowing narrative paragraphs with structured sections
+
+### V0 (Vercel)
+- Use component-level instructions
+- Specify React component names and structure
+- Include Tailwind class direction where helpful
+- Format: structured list of components with props and variants
+
+### Framer AI
+- Use page structure + section descriptions
+- Specify animation behavior explicitly
+- Reference Framer component names (Stack, Grid, etc.)
+- Format: section-by-section with interaction notes
+
+### Figma AI / Manual Figma
+- Use frame structure and layer naming conventions
+- Specify Auto Layout behavior
+- Reference design token names
+- Format: frame hierarchy with component notes
+
+### Locofy
+- Use HTML/CSS structure language
+- Specify responsive breakpoint behavior
+- Reference design token names
+- Format: element hierarchy with responsive rules
+
+### Other / Not Decided
+- Use the Google Stitch format as default
+- Note at top of prompt: "Adapt this prompt for your target tool"
 
 ---
 
@@ -937,7 +996,7 @@ Before running this skill:
 
 After completing this skill, write output to:
 
-- `.agency/STITCH_PROMPT.md` — the Google Stitch Prompt
+- `.agency/UI_GENERATION_PROMPT.md` — the UI Generation Prompt (tool-specific)
 - `.agency/PROJECT_STATE.json` — updated state
 - `.agency/CURRENT_CONTEXT.md` — updated session context
 - `.agency/CONTEXT_INDEX.json` — updated index
@@ -975,7 +1034,7 @@ After completing this skill:
 4. Update `.agency/CONTEXT_INDEX.json`:
    - Set `current_phase` to `stitch-prompt`
    - Set `current_skill` to `ui-critique`
-   - Set `required_context_files` to `[".agency/CURRENT_CONTEXT.md", ".agency/DESIGN_DNA.md", ".agency/STITCH_PROMPT.md", ".agency/PROJECT_STATE.json"]`
+   - Set `required_context_files` to `[".agency/CURRENT_CONTEXT.md", ".agency/DESIGN_DNA.md", ".agency/UI_GENERATION_PROMPT.md", ".agency/PROJECT_STATE.json"]`
 5. Append a short entry to `.agency/CHANGELOG.md`.
 6. Update `.agency/TODO.md` with next steps.
 7. Add any major prompt decisions to `.agency/DECISIONS.md`.
