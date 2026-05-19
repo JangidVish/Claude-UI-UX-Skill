@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "project_name": "",
+  "current_phase": "",
+  "current_skill": "",
+  "last_updated": "",
+  "context_loading_rule": "Read CURRENT_CONTEXT.md first. Read only the files listed in required_context_files for the active skill.",
+  "active_task": "",
+  "required_context_files": [],
+  "files": {
+    "project_context": {
+      "path": ".agency/PROJECT_CONTEXT.md",
+      "purpose": "Full project summary, client input, goals, audience, assumptions, and design risks",
+      "read_when": ["client discovery", "major project reorientation", "handoff"]
+    },
+    "project_state": {
+      "path": ".agency/PROJECT_STATE.json",
+      "purpose": "Machine-readable current project state",
+      "read_when": ["every skill if state details are needed"]
+    },
+    "client_brief": {
+      "path": ".agency/CLIENT_BRIEF.md",
+      "purpose": "Output from Client Discovery Skill",
+      "read_when": ["ux strategy", "design dna", "stitch prompt", "handoff"]
+    },
+    "ux_strategy": {
+      "path": ".agency/UX_STRATEGY.md",
+      "purpose": "UX strategy, journey, page hierarchy, conversion flow",
+      "read_when": ["design dna", "stitch prompt", "critique", "handoff"]
+    },
+    "design_dna": {
+      "path": ".agency/DESIGN_DNA.md",
+      "purpose": "Visual design system, colors, typography, layout, motion, anti-AI rules",
+      "read_when": ["stitch prompt", "critique", "humanization", "responsive review", "handoff"]
+    },
+    "stitch_prompt": {
+      "path": ".agency/STITCH_PROMPT.md",
+      "purpose": "Final Google Stitch prompt",
+      "read_when": ["critique", "humanization"]
+    },
+    "ui_critique": {
+      "path": ".agency/UI_CRITIQUE.md",
+      "purpose": "Critique of generated UI output",
+      "read_when": ["humanization", "handoff if needed"]
+    },
+    "refinement_prompt": {
+      "path": ".agency/REFINEMENT_PROMPT.md",
+      "purpose": "Prompt used to improve generated UI",
+      "read_when": ["critique", "handoff if needed"]
+    },
+    "responsive_accessibility_review": {
+      "path": ".agency/RESPONSIVE_ACCESSIBILITY_REVIEW.md",
+      "purpose": "Responsive and accessibility review",
+      "read_when": ["developer handoff"]
+    },
+    "developer_handoff": {
+      "path": ".agency/DEVELOPER_HANDOFF.md",
+      "purpose": "Final implementation handoff",
+      "read_when": ["development"]
+    },
+    "decisions": {
+      "path": ".agency/DECISIONS.md",
+      "purpose": "Important project decisions that should not be forgotten",
+      "read_when": ["before changing design direction", "before major implementation"]
+    },
+    "todo": {
+      "path": ".agency/TODO.md",
+      "purpose": "Current and upcoming tasks",
+      "read_when": ["every new session", "before continuing work"]
+    },
+    "changelog": {
+      "path": ".agency/CHANGELOG.md",
+      "purpose": "History of completed work",
+      "read_when": ["when resuming after a gap", "handoff"]
+    }
+  }
+}

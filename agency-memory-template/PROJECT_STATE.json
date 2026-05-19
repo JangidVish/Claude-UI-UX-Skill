@@ -1,0 +1,24 @@
+{
+  "project_name": "",
+  "client": "",
+  "industry": "",
+  "project_type": "",
+  "current_phase": "discovery",
+  "last_updated": "",
+  "phases": {
+    "discovery": { "status": "pending", "completed_at": null },
+    "ux_strategy": { "status": "pending", "completed_at": null },
+    "design_dna": { "status": "pending", "completed_at": null },
+    "stitch_prompt": { "status": "pending", "completed_at": null },
+    "ui_critique": { "status": "pending", "completed_at": null },
+    "humanization": { "status": "pending", "completed_at": null },
+    "responsive_review": { "status": "pending", "completed_at": null },
+    "developer_handoff": { "status": "pending", "completed_at": null }
+  },
+  "handoff_complete": false,
+  "primary_cta": "",
+  "design_direction": "",
+  "target_audience": "",
+  "open_questions": [],
+  "blocked_by": []
+}
